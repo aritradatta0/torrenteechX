@@ -76,6 +76,6 @@ You have to pass link as www.download.me/gk.txt | new.txt
 the file will be uploaded as new.txt.
 
 How to Use?
-send any one of the available command, as a reply to a valid link/magnet/torrent. 👊""",
+send any one of the available command, as a reply to a valid link/magnet/torrent.""",
         disable_web_page_preview=True,
     )
