@@ -44,22 +44,16 @@ async def status_message_f(client, message):
             e_t_a = str(download.eta_string())
             current_gid = str(download.gid)
             #
-            msg += f"<u>{downloading_dir_name}</u>"
-            msg += " | "
-            msg += f"{total_length_size}"
-            msg += " | "
-            msg += f"{progress_percent_string}"
-            msg += " | "
-            msg += f"{DOWNLOAD_ICON} {down_speed_string}"
-            msg += " | "
-            msg += f"{UPLOAD_ICON} {up_speed_string}"
-            msg += " | "
-            msg += f"{e_t_a}"
-            msg += " | "
-            msg += f"{download_current_status}"
-            msg += " | "
-            msg += f"<code>/cancel {current_gid}</code>"
-            msg += " | "
+            msg += f"<File:</b> <code>{downloading_dir_name}</code>\n"
+            msg += f"<b>Size:</b> <code>{total_length_size}<code>\n"
+            msg += f"<b>Progress:</b> <code>{progress_percent_string}<code>\n"
+            msg += f"Downloading...{DOWNLOAD_ICON}\n"
+            msg += f"<b>Down Speed:</b> <code>{down_speed_string}<code>\n"
+            msg += f"Uploading...{UPLOAD_ICON}\n"
+            msg += f"<b>Up Speed:</b> <code>{up_speed_string}<code>\n"
+            msg += f"<b>ETA:</b> <code>{e_t_a}<code>\n"
+            msg += f"<b>Status:</b> <code>{download_current_status}<code>\n"
+            msg += f"<b>GID:</b> <code>/cancel {current_gid}</code>"
             msg += "\n\n"
         # LOGGER.info(msg)
 
