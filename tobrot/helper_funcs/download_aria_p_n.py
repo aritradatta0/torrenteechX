@@ -19,7 +19,7 @@ from tobrot import (
     EDIT_SLEEP_TIME_OUT,
     LOGGER,
     MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START,
-    MAX_CONCURRENT_DOWNLOADS,
+#    MAX_CONCURRENT_DOWNLOADS,
 )
 from tobrot.helper_funcs.create_compressed_archive import (
     create_archive,
@@ -105,7 +105,7 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--http-accept-gzip=true")
     aria2_daemon_start_cmd.append("--referer=*")
     aria2_daemon_start_cmd.append("--content-disposition-default-utf8=true")
-    aria2_daemon_start_cmd.append(f"--max-concurrent-downloads={MAX_CONCURRENT_DOWNLOADS}")
+#    aria2_daemon_start_cmd.append(f"--max-concurrent-downloads={MAX_CONCURRENT_DOWNLOADS}")
     #
     LOGGER.info(aria2_daemon_start_cmd)
     #
