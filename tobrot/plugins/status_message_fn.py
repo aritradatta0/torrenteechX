@@ -44,15 +44,12 @@ async def status_message_f(client, message):
             e_t_a = str(download.eta_string())
             current_gid = str(download.gid)
             #
-            msg += f"<File:</b> <code>{downloading_dir_name}</code>\n"
-            msg += f"<b>Size:</b> <code>{total_length_size}<code>\n"
-            msg += f"<b>Progress:</b> <code>{progress_percent_string}<code>\n"
-            msg += f"Downloading...{DOWNLOAD_ICON}\n"
-            msg += f"<b>Down Speed:</b> <code>{down_speed_string}<code>\n"
-            msg += f"Uploading...{UPLOAD_ICON}\n"
-            msg += f"<b>Up Speed:</b> <code>{up_speed_string}<code>\n"
-            msg += f"<b>ETA:</b> <code>{e_t_a}<code>\n"
-            msg += f"<b>Status:</b> <code>{download_current_status}<code>\n"
+            msg += f"<b>File:</b> <code>{downloading_dir_name}</code>\n"
+            msg += f"<b>Size:</b> <code>{total_length_size}</code>\n"
+            msg += f"<b>Progress:</b> <code>{progress_percent_string}</code>\n"
+            msg += f"<b>Speed:</b> {DOWNLOAD_ICON}<code>{down_speed_string}</code> | {UPLOAD_ICON}<code>{up_speed_string}</code>\n"
+            msg += f"<b>ETA:</b> <code>{e_t_a}</code>\n"
+            msg += f"<b>Status:</b> <code>{download_current_status}</code>\n"
             msg += f"<b>GID:</b> <code>/cancel {current_gid}</code>"
             msg += "\n\n"
         # LOGGER.info(msg)
@@ -67,10 +64,10 @@ async def status_message_f(client, message):
     free = humanbytes(free)
 
     ms_g = (
-        f"<b>Bot Uptime</b>: <code>{hr} : {mi} : {se}</code>\n"
-        f"<b>Total disk space</b>: <code>{total}</code>\n"
-        f"<b>Used</b>: <code>{used}</code>\n"
-        f"<b>Free</b>: <code>{free}</code>\n"
+        f"⏰<b>Bot Uptime:</b> <code>{hr}:{mi}:{se}</code>\n"
+        f"💾<b>Total disk space:</b> <code>{total}</code>\n"
+        f"📀<b>Used:</b> <code>{used}</code>\n"
+        f"💿<b>Free:</b> <code>{free}</code>\n"
     )
     # LOGGER.info(ms_g)
 
