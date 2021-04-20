@@ -1,3 +1,9 @@
+FROM alpine:edge
+
+RUN mkdir ./app
+RUN chmod 777 ./app
+WORKDIR /app
+
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
 RUN apk update -q && apk --no-cache -q add \
     python3-dev py3-pip py3-lxml\
@@ -12,7 +18,6 @@ RUN apk update -q && apk --no-cache -q add \
     rm glibc-2.32-r0.apk && \
     rm -r /var/cache/apk/APKINDEX.* && \
     rm -rf /tmp/* /var/cache/apk/* /var/tmp/*
-
 COPY . .
 RUN bash setup.sh
 
