@@ -6,7 +6,7 @@ WORKDIR /app
 
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
 RUN apk update -q && apk --no-cache -q add \
-    python3-dev py3-pip py3-lxml py3-dotenv p7zip \
+    python3-dev py3-pip py3-lxml p7zip \
     ffmpeg unzip unrar tar wget curl bash git && \
     apk add -qq --no-cache --virtual .build-deps \
     build-base zlib-dev jpeg-dev  \
@@ -18,8 +18,9 @@ RUN apk update -q && apk --no-cache -q add \
     rm glibc-2.32-r0.apk && \
     rm -r /var/cache/apk/APKINDEX.* && \
     rm -rf /tmp/* /var/cache/apk/* /var/tmp/*
-COPY setup.sh .
+COPY setup.sh requirements.txt .
 RUN bash setup.sh
+RUN pip3 install --no-cache-dir -r requirements.txt
 COPY . .
 RUN chmod +x extract
 CMD ["bash","start.sh"]
