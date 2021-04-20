@@ -6,8 +6,8 @@ RUN chmod 777 /app
 WORKDIR /app
 
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
-RUN apk update -qq && apk --no-cache -q add \
-    python3-dev py3-pip aria2 \
+RUN apk update && apk add --no-cache -q \
+    python3-dev python3 py3-pip aria2 \
     ffmpeg unzip unrar tar wget curl bash git && \
     apk add -qq --no-cache --virtual .build-deps \
     build-base zlib-dev jpeg-dev gcc musl-dev \
@@ -19,7 +19,7 @@ RUN apk update -qq && apk --no-cache -q add \
     rm glibc-2.32-r0.apk && \
     rm -r /var/cache/apk/APKINDEX.* && \
     rm -rf /tmp/* /var/cache/apk/* /var/tmp/*
-RUN python3 -m pip install -U pip
+#RUN python3 -m pip install -U pip
 
 #COPY . .
 #COPY setup.sh .
