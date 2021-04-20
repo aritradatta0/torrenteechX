@@ -2,6 +2,7 @@ FROM alpine:edge
 
 RUN mkdir ./app
 RUN chmod 777 ./app
+RUN chmod 777 /app
 WORKDIR /app
 
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
@@ -21,10 +22,11 @@ RUN apk update -q && apk --no-cache -q add \
 RUN python3 -m pip install -U pip
 
 #COPY . .
-COPY setup.sh requirements.txt /app/
+COPY setup.sh .
 RUN bash setup.sh
 
-RUN pip3 install -q --no-cache-dir -r requirements.txt
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
 COPY . .
 
 #RUN apk del .build-deps
