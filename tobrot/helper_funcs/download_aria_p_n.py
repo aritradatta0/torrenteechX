@@ -277,7 +277,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                     pass
                 #
                 if is_file is None:
-                    msgg = f"<b>Conn:</b> <code>{file.connections}</code> | <b>GID:</b> <code>{gid}</code>"
+                    msgg = f"<b>Conn:</b> <code>{file.connections}</code>"
                 else:
                     msgg = f"<b>P:</b> <code>{file.connections}</code> | <b>S:</b> <code>{file.num_seeders}</code>"
                 msg += f"\n<b>File:</b> <code>`{downloading_dir_name}`</code>"
@@ -286,7 +286,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                 msg += f"\n<b>ETA:</b> <code>{file.eta_string()}</code>"
                 msg += f"\n<b>Size:</b> <code>{file.total_length_string()}</code>"
                 msg += f"\n {msgg}"
-                msg += f"\n<b>GID:</b> <code>/cancel {gid}</code>
+                msg += f"\n<b>GID:</b> <code> {gid}</code>
 
                 # if is_file is None :
                 # msg += f"\n<b>Conn:</b> {file.connections}, GID: <code>{gid}</code>"
