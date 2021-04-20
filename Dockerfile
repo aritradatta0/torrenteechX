@@ -6,8 +6,8 @@ RUN chmod 777 /app
 WORKDIR /app
 
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
-RUN apk update -q && apk --no-cache -q add \
-    python3-dev py3-pip py3-lxml \
+RUN apk update -qq && apk --no-cache -q add \
+    python3-dev py3-pip aria2 \
     ffmpeg unzip unrar tar wget curl bash git && \
     apk add -qq --no-cache --virtual .build-deps \
     build-base zlib-dev jpeg-dev gcc musl-dev \
@@ -22,8 +22,8 @@ RUN apk update -q && apk --no-cache -q add \
 RUN python3 -m pip install -U pip
 
 #COPY . .
-COPY setup.sh .
-RUN bash setup.sh
+#COPY setup.sh .
+#RUN bash setup.sh
 
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
