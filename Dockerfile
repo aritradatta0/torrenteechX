@@ -18,7 +18,8 @@ RUN apk update -q && apk --no-cache -q add \
     rm glibc-2.32-r0.apk && \
     rm -r /var/cache/apk/APKINDEX.* && \
     rm -rf /tmp/* /var/cache/apk/* /var/tmp/*
-RUN pip3 install --upgrade pip    
+RUN python3 -m pip install -U pip
+
 COPY . .
 RUN bash setup.sh
 
