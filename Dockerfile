@@ -20,10 +20,13 @@ RUN apk update -q && apk --no-cache -q add \
     rm -rf /tmp/* /var/cache/apk/* /var/tmp/*
 RUN python3 -m pip install -U pip
 
-COPY . .
+#COPY . .
+COPY setup.sh requirements.txt /app/
 RUN bash setup.sh
 
 RUN pip3 install -q --no-cache-dir -r requirements.txt
-RUN apk del .build-deps
+COPY . .
+
+#RUN apk del .build-deps
 RUN chmod +x extract
 CMD ["bash","start.sh"]
