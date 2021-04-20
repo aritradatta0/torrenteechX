@@ -277,13 +277,16 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                     pass
                 #
                 if is_file is None:
-                    msgg = f"Conn: {file.connections} <b>|</b> GID: <code>{gid}</code>"
+                    msgg = f"<b>Conn:</b> <code>{file.connections}</code> | <b>GID:</b> <code>{gid}</code>"
                 else:
-                    msgg = f"P: {file.connections} | S: {file.num_seeders} <b>|</b> GID: <code>{gid}</code>"
-                msg = f"\n`{downloading_dir_name}`"
-                msg += f"\n<b>Speed</b>: {file.download_speed_string()}"
-                msg += f"\n<b>Status</b>: {file.progress_string()} <b>of</b> {file.total_length_string()} <b>|</b> {file.eta_string()} <b>|</b> {msgg}"
-                # msg += f"\nSize: {file.total_length_string()}"
+                    msgg = f"<b>P:</b> <code>{file.connections}</code> | <b>S:</b> <code>{file.num_seeders}</code>"
+                msg += f"\n<b>File:</b> <code>`{downloading_dir_name}`</code>"
+                msg += f"\n<b>Speed:</b> <code>{file.download_speed_string()}</code>"
+                msg += f"\n<b>Status:</b> <code>{file.progress_string()} / {file.total_length_string()}</code>"
+                msg += f"\n<b>ETA:</b> <code>{file.eta_string()}</code>"
+                msg += f"\n<b>Size:</b> <code>{file.total_length_string()}</code>"
+                msg += f"\n {msgg}"
+                msg += f"\n<b>GID:</b> <code>/cancel {gid}</code>
 
                 # if is_file is None :
                 # msg += f"\n<b>Conn:</b> {file.connections}, GID: <code>{gid}</code>"
@@ -318,7 +321,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                             f"Cancelling downloading of {file.name} may be due to slow torrent"
                         )
                         await event.edit(
-                            f"Download cancelled :\n<code>{file.name}</code>\n\n #MetaDataError"
+                            f"Download cancelled:\n<code>{file.name}</code>\n\n #MetaDataError"
                         )
                         file.remove(force=True, files=True)
                         return False
@@ -341,7 +344,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
             return True
     except aria2p.client.ClientException:
         await event.edit(
-            f"Download cancelled :\n<code>{file.name} ({file.total_length_string()})</code>"
+            f"Download cancelled:\n<code>{file.name} ({file.total_length_string()})</code>"
         )
     except MessageNotModified as ep:
         LOGGER.info(ep)
@@ -353,7 +356,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
     except RecursionError:
         file.remove(force=True, files=True)
         await event.edit(
-            "Download Auto Cancelled :\n\n"
+            "Download Auto Cancelled:\n\n"
             "Your Torrent/Link is Dead.".format(file.name)
         )
         return False
@@ -361,7 +364,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
         LOGGER.info(str(e))
         if "not found" in str(e) or "'file'" in str(e):
             await event.edit(
-                f"Download cancelled :\n<code>{file.name} ({file.total_length_string()})</code>"
+                f"Download cancelled:\n<code>{file.name} ({file.total_length_string()})</code>"
             )
             return False
         else:
