@@ -33,17 +33,17 @@ logging.getLogger("PIL").setLevel(logging.WARNING)
 
 LOGGER = logging.getLogger(__name__)
 
-dotenv.load_dotenv("config.env")
+#dotenv.load_dotenv("config.env")
 
 # checking compulsory variable
-for imp in ["TG_BOT_TOKEN", "APP_ID", "API_HASH", "OWNER_ID", "AUTH_CHANNEL"]:
-    try:
-        value = os.environ[imp]
-        if not value:
-            raise KeyError
-    except KeyError:
-        LOGGER.critical(f"Oh...{imp} is missing from config.env ... fill that")
-        exit()
+#for imp in ["TG_BOT_TOKEN", "APP_ID", "API_HASH", "OWNER_ID", "AUTH_CHANNEL"]:
+#    try:
+#        value = os.environ[imp]
+#        if not value:
+#            raise KeyError
+#    except KeyError:
+#        LOGGER.critical(f"Oh...{imp} is missing from config.env ... fill that")
+#        exit()
 
 # The Telegram API things
 TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "")
@@ -121,17 +121,17 @@ gDict = defaultdict(lambda: [])
 user_settings = defaultdict(lambda: {})
 
 
-def multi_rclone_init():
-    if RCLONE_CONFIG:
-        LOGGER.warning("Don't use this var now, put your rclone.conf in root directory")
-    if not os.path.exists("rclone.conf"):
-        LOGGER.warning("Sed, No rclone.conf found in root directory")
-        return
-    if not os.path.exists("rclone_bak.conf"):  # backup rclone.conf file
-        with open("rclone_bak.conf", "w+", newline="\n", encoding="utf-8") as fole:
-            with open("rclone.conf", "r") as f:
-                fole.write(f.read())
-        LOGGER.info("rclone.conf backuped to rclone_bak.conf!")
+#def multi_rclone_init():
+#    if RCLONE_CONFIG:
+#        LOGGER.warning("Don't use this var now, put your rclone.conf in root directory")
+#    if not os.path.exists("rclone.conf"):
+#        LOGGER.warning("Sed, No rclone.conf found in root directory")
+#        return
+#    if not os.path.exists("rclone_bak.conf"):  # backup rclone.conf file
+#        with open("rclone_bak.conf", "w+", newline="\n", encoding="utf-8") as fole:
+#            with open("rclone.conf", "r") as f:
+#                fole.write(f.read())
+#        LOGGER.info("rclone.conf backuped to rclone_bak.conf!")
 
 
-multi_rclone_init()
+#multi_rclone_init()
