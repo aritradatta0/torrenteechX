@@ -44,27 +44,18 @@ async def status_message_f(client, message):
             e_t_a = str(download.eta_string())
             current_gid = str(download.gid)
             #
-            msg += f"<u>{downloading_dir_name}</u>"
-            msg += " | "
-            msg += f"{total_length_size}"
-            msg += " | "
-            msg += f"{progress_percent_string}"
-            msg += " | "
-            msg += f"{DOWNLOAD_ICON} {down_speed_string}"
-            msg += " | "
-            msg += f"{UPLOAD_ICON} {up_speed_string}"
-            msg += " | "
-            msg += f"{e_t_a}"
-            msg += " | "
-            msg += f"{download_current_status}"
-            msg += " | "
-            msg += f"<code>/cancel {current_gid}</code>"
-            msg += " | "
+            msg += f"<b>File:</b> <code>{downloading_dir_name}</code>\n"
+            msg += f"<b>Size:</b> <code>{total_length_size}</code>\n"
+            msg += f"<b>Progress:</b> <code>{progress_percent_string}</code>\n"
+            msg += f"<b>Speed:</b> {DOWNLOAD_ICON}<code>{down_speed_string}</code> | {UPLOAD_ICON}<code>{up_speed_string}</code>\n"
+            msg += f"<b>ETA:</b> <code>{e_t_a}</code>\n"
+            msg += f"<b>Status:</b> <code>{download_current_status}</code>\n"
+            msg += f"<b>GID:</b> <code>/cancel {current_gid}</code>"
             msg += "\n\n"
         # LOGGER.info(msg)
 
         if msg == "":
-            msg = "🤷‍♂️ No Active, Queued or Paused TORRENTs"
+            msg = "No Active, Queued or Paused Torrents."
 
     hr, mi, se = up_time(time.time() - BOT_START_TIME)
     total, used, free = shutil.disk_usage(".")
@@ -73,10 +64,10 @@ async def status_message_f(client, message):
     free = humanbytes(free)
 
     ms_g = (
-        f"<b>Bot Uptime</b>: <code>{hr} : {mi} : {se}</code>\n"
-        f"<b>Total disk space</b>: <code>{total}</code>\n"
-        f"<b>Used</b>: <code>{used}</code>\n"
-        f"<b>Free</b>: <code>{free}</code>\n"
+        f"⏰<b>Bot Uptime:</b> <code>{hr}:{mi}:{se}</code>\n"
+        f"💾<b>Total disk space:</b> <code>{total}</code>\n"
+        f"📀<b>Used:</b> <code>{used}</code>\n"
+        f"💿<b>Free:</b> <code>{free}</code>\n"
     )
     # LOGGER.info(ms_g)
 

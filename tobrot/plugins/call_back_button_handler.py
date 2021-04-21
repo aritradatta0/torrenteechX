@@ -33,14 +33,14 @@ async def button(bot, update: CallbackQuery):
         else:
             await bot.answer_callback_query(
                 callback_query_id=update.id,
-                text="who are you? 🤪🤔🤔🤔",
+                text="Who are you? 🤪",
                 show_alert=True,
                 cache_time=0,
             )
         return
     if "|" in cb_data:
         await bot.answer_callback_query(
-            update.id, text="trying to download...", show_alert=False
+            update.id, text="Trying to download...", show_alert=False
         )
         await youtube_dl_call_back(bot, update)
         return
@@ -53,7 +53,7 @@ async def button(bot, update: CallbackQuery):
     if cb_data.startswith("cancel"):
         if (update.from_user.id == update.message.reply_to_message.from_user.id) or g:
             await bot.answer_callback_query(
-                update.id, text="trying to cancel...", show_alert=False
+                update.id, text="Trying to cancel...", show_alert=False
             )
             if len(cb_data) > 1:
                 i_m_s_e_g = await update.message.reply_to_message.reply_text(
@@ -76,14 +76,14 @@ async def button(bot, update: CallbackQuery):
                         else:
                             os.remove(file_name)
                     await i_m_s_e_g.edit_text(
-                        f"Leech Cancelled by <a href='tg://user?id={update.from_user.id}'>{update.from_user.first_name}</a>"
+                        f"Leech cancelled by <a href='tg://user?id={update.from_user.id}'>{update.from_user.first_name}</a>"
                     )
                 except Exception as e:
                     await i_m_s_e_g.edit_text("<i>FAILED</i>\n\n" + str(e) + "\n#error")
         else:
             await bot.answer_callback_query(
                 callback_query_id=update.id,
-                text="who are you? 🤪🤔🤔🤔",
+                text="Who are you? 🤪",
                 show_alert=True,
                 cache_time=0,
             )
@@ -128,13 +128,13 @@ async def button(bot, update: CallbackQuery):
                         os.remove(f)
                     else:
                         shutil.rmtree(f)
-                await update.message.edit_text(f"Deleted {len(g_del_list)} objects 😬")
+                await update.message.edit_text(f"Deleted {len(g_del_list)} objects.")
             else:
-                await update.message.edit_text("Nothing to clear 🙄")
+                await update.message.edit_text("Nothing to clear.")
         else:
-            await update.message.edit_text("You are not allowed to do that 🤭")
+            await update.message.edit_text("You are not allowed to do that!")
     elif cb_data == "fuckoff":
         await bot.answer_callback_query(
             update.id, text="trying to cancel...", show_alert=False
         )
-        await update.message.edit_text("Okay! fine 🤬")
+        await update.message.edit_text("Okay! fine")

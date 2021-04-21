@@ -51,7 +51,7 @@ async def down_load_media_f(client, message):
                 f"Downloaded to <code>{the_real_download_location}</code> in <u>{ms}</u> seconds"
             )
         else:
-            await mess_age.edit_text("😔 Download Cancelled or some error happened")
+            await mess_age.edit_text("Download Cancelled!")
             return
         the_real_download_location_g = the_real_download_location
         if user_command == TELEGRAM_LEECH_UNZIP_COMMAND.lower():
@@ -68,7 +68,7 @@ async def down_load_media_f(client, message):
         await upload_to_gdrive(the_real_download_location_g, mess_age, message, user_id)
     else:
         await mess_age.edit_text(
-            "Reply to a Telegram Media, to upload to the Cloud Drive."
+            "Reply to the message!"
         )
 
 
@@ -103,6 +103,6 @@ async def download_tg(client, message):
                 f"Downloaded to <code>{the_real_download_location}</code> in <u>{ms}</u> seconds"
             )
         else:
-            await mess_age.edit_text("😔 Download Cancelled or some error happened")
+            await mess_age.edit_text("Download Cancelled!")
             return
     return the_real_download_location, mess_age
